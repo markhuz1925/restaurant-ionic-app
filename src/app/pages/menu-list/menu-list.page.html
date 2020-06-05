@@ -35,7 +35,9 @@
 						</ion-card-content>
 						<ion-item lines="none">
 							<ion-note color="danger" slot="start">{{ i.price | currency: 'Php'}}</ion-note>
-							<ion-button slot="end" color="primary" (click)="addCart(i)">Add to Cart</ion-button>
+							<ion-button fill="clear" size="large" slot="end" color="primary" (click)="addCart(i)">
+								<ion-icon name="cart-outline"></ion-icon>
+							</ion-button>
 						</ion-item>
 					</ion-card>
 				</ion-col>

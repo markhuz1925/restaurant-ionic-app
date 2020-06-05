@@ -32,7 +32,7 @@
             <ion-note color="default" slot="start">Quantity:</ion-note>
             <ion-note color="default" slot="end">{{ (i.qty > 10? 10: i.qty) }}</ion-note>
           </ion-item>
-          <ion-item>
+          <ion-item lines="none">
             <ion-range min="1" max="10" [(ngModel)]="i.qty" color="secondary">
               <ion-label slot="start">1</ion-label>
               <ion-label slot="end">10</ion-label>
