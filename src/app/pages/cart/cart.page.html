@@ -1,0 +1,39 @@
+<ion-header translucent="false">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Cart
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-grid fixed class="ion-no-padding">
+
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <ion-card *ngFor="let i of items" class="ion-no-padding">
+          <ion-card-header>
+            <ion-text>
+              <h3>{{ i.name }}</h3>
+            </ion-text>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-text>
+              <h3>{{ i.description }}</h3>
+            </ion-text>
+          </ion-card-content>
+          <ion-item lines="none">
+            <ion-note color="danger" slot="start">{{ i.price | currency: 'Php'}}</ion-note>
+            <ion-note color="danger" slot="end">{{ i.qty }}</ion-note>
+          </ion-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

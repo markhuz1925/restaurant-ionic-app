@@ -1,0 +1,48 @@
+<ion-header translucent="false">
+  <ion-toolbar>
+    <ion-title>
+      Restaurant
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngFor="let i of menus">
+    <ion-card button="true" [routerLink]="['./', i.id]">
+      <div class="img-gradient">
+        <img [src]="i.image" />
+      </div>
+      <ion-card-content>
+        <ion-card-title>{{ i.title }}</ion-card-title>
+        <ion-card-subtitle>{{ i.description }}</ion-card-subtitle>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- <ion-list color="dark">
+    <ion-item *ngFor="let menu of menus" color="dark">
+
+      <ion-img [src]="menu.image"></ion-img>
+
+      <ion-label>
+        <h3>{{ menu.category }}</h3>
+        <p>{{ menu.description }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list> -->
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" color="primary" size="large">
+      <ion-icon name="cart-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
+
+<!-- <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+  <ion-fab-button>
+    <ion-icon name="cart-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab> -->

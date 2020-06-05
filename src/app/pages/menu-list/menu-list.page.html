@@ -1,0 +1,47 @@
+<ion-header translucent="false">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			{{ menuItem.title }}
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+	<ion-grid fixed class="ion-no-padding">
+		<ion-row>
+			<ion-col class="ion-no-padding">
+				<div class="img-gradient">
+					<ion-img [src]="menuItem.image"></ion-img>
+				</div>
+			</ion-col>
+		</ion-row>
+
+		<div class="menu-list">
+			<ion-row>
+				<ion-col class="ion-no-padding">
+					<ion-card *ngFor="let i of menuItem.menus" class="ion-no-padding">
+						<ion-card-header>
+							<ion-card-title>{{ i.name }}</ion-card-title>
+						</ion-card-header>
+						<img [src]="i.imgUrl" />
+						<ion-card-content>
+							<ion-text>
+								<h3>{{ i.description }}</h3>
+							</ion-text>
+						</ion-card-content>
+						<ion-item lines="none">
+							<ion-note color="danger" slot="start">{{ i.price | currency: 'Php'}}</ion-note>
+							<ion-button slot="end" color="primary" (click)="addCart(i)">Add to Cart</ion-button>
+						</ion-item>
+					</ion-card>
+				</ion-col>
+			</ion-row>
+		</div>
+
+	</ion-grid>
+
+</ion-content>
