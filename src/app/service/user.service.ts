@@ -6,10 +6,6 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  items = [];
-  selectedItems = [];
-  total = 0;
-
   private _user: { cart: Array<any>, orders: Array<any> } = { cart: [], orders: [] };
 
   constructor() { }
@@ -27,17 +23,7 @@ export class UserService {
   }
 
   getTotalAmount() {
-    this.items = this._user.cart;
-    let selected = {};
-    for (let obj of this.items) {
-      if (selected[obj.id]) {
-        selected[obj.id].count++;
-      } else {
-        selected[obj.id] = { ...obj, count: 1 };
-      }
-    }
-    this.selectedItems = Object.keys(selected).map(key => selected[key]);
-    this.total = this.selectedItems.reduce((a, b) => a + (b.qty * b.price), 0);
+    return this._user.cart.reduce((a, b) => a + (b.qty * b.price), 0);
   }
 
 }
