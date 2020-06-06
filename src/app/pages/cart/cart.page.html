@@ -64,7 +64,7 @@
   <ion-toolbar>
     <ion-item lines="none">
       <ion-text slot="start">Total</ion-text>
-      <ion-text slot="end" color="primary">{{ getTotalAmountInCart() }}</ion-text>
+      <ion-text slot="end" color="primary">{{ getTotalAmountInCart() | currency: '₱' }}</ion-text>
     </ion-item>
 
     <ion-button color="primary" fill="solid" size="large" expand="block">

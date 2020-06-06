@@ -25,4 +25,6 @@ export class CartPage implements OnInit {
   getTotalAmountInCart() {
     return this._userService.getTotalAmount();
   }
+
+
 }

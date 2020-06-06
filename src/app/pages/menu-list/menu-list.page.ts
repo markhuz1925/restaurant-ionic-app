@@ -48,10 +48,48 @@ export class MenuListPage implements OnInit {
     else {
       item.qty++;
     }
-    this.router.navigateByUrl('/cart');
+    // this.router.navigateByUrl('/cart');
   }
 
   goToMyCart() {
     this.router.navigateByUrl('/cart');
   }
+
+  IsItemOnCart(item) {
+    this._userService.IsItemOnCart(item);
+  }
+
+
+  addMoreItemToCart(i) {
+    let item = this._userService.getCartItems().find(item => item.id == i.menuid);
+    if (item === undefined) {
+      this._userService.getCartItems().push({
+        id: i.menuid,
+        name: i.name,
+        description: i.description,
+        price: i.price,
+        qty: 1
+      })
+    }
+    else {
+      item.qty++;
+    }
+  }
+
+  removeMoreItemToCart(i) {
+    let item = this._userService.getCartItems().find(item => item.id == i.menuid);
+    if (item === undefined) {
+      this._userService.getCartItems().push({
+        id: i.menuid,
+        name: i.name,
+        description: i.description,
+        price: i.price,
+        qty: 1
+      })
+    }
+    else {
+      item.qty--;
+    }
+  }
+
 }

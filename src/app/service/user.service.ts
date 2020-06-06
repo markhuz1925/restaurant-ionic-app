@@ -26,4 +26,8 @@ export class UserService {
     return this._user.cart.reduce((a, b) => a + (b.qty * b.price), 0);
   }
 
+  IsItemOnCart(cartItem: any): boolean {
+    return this._user.cart.filter(item => item.menuid === cartItem.menuid).length > -1;
+  }
+
 }
