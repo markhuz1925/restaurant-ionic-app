@@ -13,8 +13,16 @@ export class CartPage implements OnInit {
   constructor(private _userService: UserService) { }
 
   ngOnInit() {
-
     this.items = this._userService.getCartItems();
   }
 
+  removeItem(item) {
+    let index = this.items.indexOf(item);
+    this.items.splice(index, 1);
+    // this.items.splice(item, 1);
+  }
+
+  getTotalAmountInCart() {
+    return this._userService.getTotalAmount();
+  }
 }

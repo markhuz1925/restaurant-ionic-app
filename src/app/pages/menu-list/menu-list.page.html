@@ -11,39 +11,47 @@
 
 <ion-content [fullscreen]="true">
 
-	<ion-grid fixed class="ion-no-padding">
+	<ion-row>
+		<ion-col class="ion-no-padding">
+			<div class="img-gradient">
+				<ion-img [src]="menuItem.image"></ion-img>
+			</div>
+		</ion-col>
+	</ion-row>
+
+	<div class="menu-list">
 		<ion-row>
 			<ion-col class="ion-no-padding">
-				<div class="img-gradient">
-					<ion-img [src]="menuItem.image"></ion-img>
-				</div>
+				<ion-card *ngFor="let i of menuItem.menus" class="ion-no-padding">
+					<ion-card-header>
+						<ion-card-title>{{ i.name }}</ion-card-title>
+					</ion-card-header>
+					<img [src]="i.imgUrl" />
+					<ion-card-content>
+						<ion-text>
+							<h3>{{ i.description }}</h3>
+						</ion-text>
+					</ion-card-content>
+					<ion-item lines="none">
+						<ion-note color="danger" slot="start">{{ i.price | currency: '₱'}}</ion-note>
+						<ion-button fill="clear" size="default" slot="end" color="primary" (click)="addCart(i)">
+							<!-- <ion-icon name="cart-outline"></ion-icon> -->
+							Add to cart
+						</ion-button>
+					</ion-item>
+				</ion-card>
 			</ion-col>
 		</ion-row>
-
-		<div class="menu-list">
-			<ion-row>
-				<ion-col class="ion-no-padding">
-					<ion-card *ngFor="let i of menuItem.menus" class="ion-no-padding">
-						<ion-card-header>
-							<ion-card-title>{{ i.name }}</ion-card-title>
-						</ion-card-header>
-						<img [src]="i.imgUrl" />
-						<ion-card-content>
-							<ion-text>
-								<h3>{{ i.description }}</h3>
-							</ion-text>
-						</ion-card-content>
-						<ion-item lines="none">
-							<ion-note color="danger" slot="start">{{ i.price | currency: 'Php'}}</ion-note>
-							<ion-button fill="clear" size="large" slot="end" color="primary" (click)="addCart(i)">
-								<ion-icon name="cart-outline"></ion-icon>
-							</ion-button>
-						</ion-item>
-					</ion-card>
-				</ion-col>
-			</ion-row>
-		</div>
-
-	</ion-grid>
+	</div>
 
 </ion-content>
+
+<ion-footer>
+	<ion-toolbar>
+		<ion-button expand="block" color="primary" size="large" (click)="goToMyCart()">
+			<!-- <ion-icon name="cart-outline"></ion-icon> -->
+			My Cart
+			<ion-note color="light" *ngIf="cart.length >= 0">({{ cart.length }})</ion-note>
+		</ion-button>
+	</ion-toolbar>
+</ion-footer>

@@ -11,9 +11,9 @@ ion-img {
 //   --ion-color-base: transparent !important;
 // }
 
-ion-content ion-toolbar {
-  margin: 10px 0;
-}
+// ion-content ion-toolbar {
+//   margin: 10px 0;
+// }
 
 .button-bg {
   --background: linear-gradient(to bottom, #fdc830, #f37335)
@@ -24,6 +24,7 @@ ion-content ion-toolbar {
   margin-top: -20px;
   border-radius: 25px;
   background: var(--ion-background-color, #ffffff);
+  margin-bottom: 80px;
 }
 
 .img-gradient{

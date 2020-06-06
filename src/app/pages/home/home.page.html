@@ -35,8 +35,10 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" color="primary" size="large">
-      <ion-icon name="cart-outline"></ion-icon>
+    <ion-button expand="block" color="primary" size="large" (click)="goToMyCart()">
+      <!-- <ion-icon name="cart-outline"></ion-icon> -->
+      My Cart
+      <ion-note color="light" *ngIf="cart.length >= 0">({{ cart.length }})</ion-note>
     </ion-button>
   </ion-toolbar>
 </ion-footer>

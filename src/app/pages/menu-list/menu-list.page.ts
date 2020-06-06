@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class MenuListPage implements OnInit {
 
   menuItem: Menu;
+  cart = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -28,6 +29,8 @@ export class MenuListPage implements OnInit {
       const menuId = paramMap.get('menuId');
       this.menuItem = this._menuService.getMenu(menuId);
     });
+    this._userService.getOrders();
+    this.cart = this._userService.getCartItems();
   }
 
   addCart(i) {
@@ -48,4 +51,7 @@ export class MenuListPage implements OnInit {
     this.router.navigateByUrl('/cart');
   }
 
+  goToMyCart() {
+    this.router.navigateByUrl('/cart');
+  }
 }
