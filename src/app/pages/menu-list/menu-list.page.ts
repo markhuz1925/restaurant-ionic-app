@@ -28,13 +28,13 @@ export class MenuListPage implements OnInit {
       }
       const menuId = paramMap.get('menuId');
       this.menuItem = this._menuService.getMenu(menuId);
+      this.menuItem.menus.forEach((item:any) => item.qty = 0);
     });
     this._userService.getOrders();
     this.cart = this._userService.getCartItems();
   }
 
   addCart(i, qty) {
-    // this._userService.addItemsCart(i);
     qty  = qty === 0? 1: qty;
     let item = this._userService.getCartItems().find(item => item.id == i.menuid);
     if (item === undefined) {
@@ -49,20 +49,18 @@ export class MenuListPage implements OnInit {
     else {
       item.qty = item.qty + qty;
     }
-    // this.router.navigateByUrl('/cart');
   }
 
-  goToMyCart() {
+  goToMyCart(): void {
     this.router.navigateByUrl('/cart');
   }
 
   IsItemOnCart(item): boolean {
-    debugger
     return this._userService.IsItemOnCart(item);
   }
 
 
-  addMoreItemToCart(i) {
+  addMoreItemToCart(i): void {
     if(i.qty === undefined) {
       i.qty = 1;
     }
@@ -71,7 +69,7 @@ export class MenuListPage implements OnInit {
     }
   }
 
-  removeMoreItemToCart(i) {
+  removeMoreItemToCart(i): void {
     if(i.qty === undefined) {
       i.qty = 0;
     }

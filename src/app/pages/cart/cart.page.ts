@@ -19,12 +19,33 @@ export class CartPage implements OnInit {
   removeItem(item) {
     let index = this.items.indexOf(item);
     this.items.splice(index, 1);
-    // this.items.splice(item, 1);
   }
 
   getTotalAmountInCart() {
     return this._userService.getTotalAmount();
   }
 
+  increaseQty(i): void {
+    if(i.qty === undefined) {
+      i.qty = 1;
+    }
+    else {
+      i.qty++;
+    }
+  }
+
+  decreaseQty(i): void {
+    if(i.qty === undefined) {
+      i.qty = 0;
+    }
+    else {
+      if(i.qty <= 1) {
+        return
+      }
+      else {
+        i.qty--;
+      }      
+    }
+  }
 
 }
