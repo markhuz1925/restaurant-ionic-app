@@ -27,7 +27,7 @@ export class UserService {
   }
 
   IsItemOnCart(cartItem: any): boolean {
-    return this._user.cart.filter(item => item.menuid === cartItem.menuid).length > -1;
+    return this._user.cart.filter(item => item.menuid === cartItem.menuid).length > 0;
   }
 
 }

@@ -33,8 +33,9 @@ export class MenuListPage implements OnInit {
     this.cart = this._userService.getCartItems();
   }
 
-  addCart(i) {
+  addCart(i, qty) {
     // this._userService.addItemsCart(i);
+    qty  = qty === 0? 1: qty;
     let item = this._userService.getCartItems().find(item => item.id == i.menuid);
     if (item === undefined) {
       this._userService.getCartItems().push({
@@ -42,11 +43,11 @@ export class MenuListPage implements OnInit {
         name: i.name,
         description: i.description,
         price: i.price,
-        qty: 1
+        qty: qty
       })
     }
     else {
-      item.qty++;
+      item.qty = item.qty + qty;
     }
     // this.router.navigateByUrl('/cart');
   }
@@ -55,40 +56,33 @@ export class MenuListPage implements OnInit {
     this.router.navigateByUrl('/cart');
   }
 
-  IsItemOnCart(item) {
-    this._userService.IsItemOnCart(item);
+  IsItemOnCart(item): boolean {
+    debugger
+    return this._userService.IsItemOnCart(item);
   }
 
 
   addMoreItemToCart(i) {
-    let item = this._userService.getCartItems().find(item => item.id == i.menuid);
-    if (item === undefined) {
-      this._userService.getCartItems().push({
-        id: i.menuid,
-        name: i.name,
-        description: i.description,
-        price: i.price,
-        qty: 1
-      })
+    if(i.qty === undefined) {
+      i.qty = 1;
     }
     else {
-      item.qty++;
+      i.qty++;
     }
   }
 
   removeMoreItemToCart(i) {
-    let item = this._userService.getCartItems().find(item => item.id == i.menuid);
-    if (item === undefined) {
-      this._userService.getCartItems().push({
-        id: i.menuid,
-        name: i.name,
-        description: i.description,
-        price: i.price,
-        qty: 1
-      })
+    if(i.qty === undefined) {
+      i.qty = 0;
     }
     else {
-      item.qty--;
+      if(i.qty <= 1) {
+        i.qty = 0;
+        return
+      }
+      else {
+        i.qty--;
+      }      
     }
   }
 

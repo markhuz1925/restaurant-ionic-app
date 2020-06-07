@@ -38,12 +38,14 @@
 						<ion-button fill="clear" slot="end" (click)="removeMoreItemToCart(i)">
 							<ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon>
 						</ion-button>
-						<ion-note slot="end"></ion-note> <!-- Need to show total quantity (i.count) -->
+						<ion-note slot="end">
+							{{(i.qty === undefined ? 0: i.qty)}}
+						</ion-note>
 						<ion-button fill="clear" slot="end" (click)="addMoreItemToCart(i)">
 							<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
 						</ion-button>
 
-						<ion-button size="default" slot="end" color="primary" (click)="addCart(i)" *ngIf="!IsItemOnCart(menuItem)">
+						<ion-button size="default" slot="end" color="primary" (click)="addCart(i, i.qty); i.qty=0;">
 							<!-- <ion-icon name="cart-outline"></ion-icon> -->
 							Add
 						</ion-button>
