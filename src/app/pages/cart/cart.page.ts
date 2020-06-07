@@ -40,7 +40,7 @@ export class CartPage implements OnInit {
     }
     else {
       if(i.qty <= 1) {
-        return
+        this.removeItem(i);
       }
       else {
         i.qty--;
