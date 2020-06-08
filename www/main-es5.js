@@ -225,7 +225,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | pages-home-home-module */
-          [__webpack_require__.e("default~pages-home-home-module~pages-menu-list-detail-menu-list-detail-module~pages-menu-list-menu-l~0f12a557"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~pages-home-home-module~pages-menu-list-detail-menu-list-detail-module~pages-menu-list-menu-l~0f12a557"), __webpack_require__.e("common"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null,
           /*! ./pages/home/home.module */
           "./src/app/pages/home/home.module.ts")).then(function (m) {
             return m.HomePageModule;
@@ -367,9 +367,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this = this;
 
           this.platform.ready().then(function () {
-            _this.statusBar.styleDefault();
-
+            // this.statusBar.styleDefault();
             _this.splashScreen.hide();
+
+            if (_this.platform.is('android')) {
+              _this.statusBar.overlaysWebView(false); // this.statusBar.styleLightContent();
+
+
+              _this.statusBar.styleDefault();
+
+              _this.statusBar.backgroundColorByHexString('#fff');
+            } else {
+              _this.statusBar.styleDefault();
+            }
           });
         }
       }]);
@@ -480,7 +490,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
       entryComponents: [],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"]],
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot({
+        mode: 'ios',
+        _forceStatusbarPadding: true
+      }), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"]],
       providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
@@ -587,7 +600,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! /Users/markhuz1925/Documents/Projects/others/restaurant-app/restaurant-app/src/main.ts */
+    /*! /Users/markhuz1925/Documents/Projects/personal/restaurant-ionic-app/src/main.ts */
     "./src/main.ts");
     /***/
   }

@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-title>\n      Cart\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n\n  <ion-grid fixed class=\"ion-no-padding\">\n\n    <ion-row>\n      <ion-col class=\"ion-no-padding\">\n        <ion-card *ngFor=\"let i of items\" class=\"ion-no-padding\">\n          <ion-card-header>\n            <ion-text>\n              <h3>{{ i.name }}</h3>\n            </ion-text>\n          </ion-card-header>\n          <ion-card-content>\n            <ion-text>\n              <h3>{{ i.description }}</h3>\n            </ion-text>\n          </ion-card-content>\n          <ion-item lines=\"none\">\n            <ion-note color=\"danger\" slot=\"start\">{{ i.price | currency: 'Php'}}</ion-note>\n            <ion-note color=\"danger\" slot=\"end\">{{ i.qty }}</ion-note>\n          </ion-item>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent=\"false\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-title>\n      Cart\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-grid fixed class=\"ion-no-padding\">\n    <ion-row>\n      <ion-col class=\"ion-no-padding\">\n\n        <ion-card *ngFor=\"let i of items\" class=\"ion-no-padding\">\n\n          <ion-card-header class=\"ion-no-padding\">\n            <ion-item lines=\"none\" class=\"ion-no-padding\">\n              <ion-button (click)=\"removeItem(i)\" color=\"medium\" fill=\"clear\" slot=\"end\" class=\"ion-no-padding\">\n                <ion-icon name=\"close-circle-outline\" slot=\"icon-only\"></ion-icon>\n              </ion-button>\n              <div class=\"ion-text-nowrap ion-margin-start\">\n                <h2>{{ i.name }}</h2>\n              </div>\n            </ion-item>\n          </ion-card-header>\n\n          <ion-card-content>\n            <ion-text>\n              <h3>{{ i.description }}</h3>\n            </ion-text>\n          </ion-card-content>\n          <ion-item lines=\"none\">\n            <ion-note color=\"default\" slot=\"start\">Amount:</ion-note>\n            <ion-note color=\"default\" slot=\"end\">{{ (i.price | currency: '₱')  }}</ion-note>\n          </ion-item>\n          <ion-item lines=\"none\">\n            <ion-note color=\"default\" slot=\"start\">Qty:</ion-note>\n            <ion-note color=\"default\" slot=\"end\">{{ i.qty }}</ion-note>\n          </ion-item>\n          <ion-item lines=\"none\">\n\t\t\t\t\t\t<ion-button fill=\"clear\" slot=\"start\" (click)=\"decreaseQty(i)\">\n\t\t\t\t\t\t\t<ion-icon slot=\"icon-only\" name=\"remove-circle-outline\"></ion-icon>\n\t\t\t\t\t\t</ion-button>\n\t\t\t\t\t\t<ion-note slot=\"end\">\n\t\t\t\t\t\t\t<ion-label slot=\"start\">{{i.qty}}</ion-label>\n\t\t\t\t\t\t</ion-note>\n\t\t\t\t\t\t<ion-button fill=\"clear\" slot=\"end\" (click)=\"increaseQty(i)\">\n\t\t\t\t\t\t\t<ion-icon slot=\"icon-only\" name=\"add-circle-outline\"></ion-icon>\n\t\t\t\t\t\t</ion-button>\n          </ion-item>\n          <ion-item lines=\"none\">\n            <ion-text slot=\"start\">\n              Subtotal\n            </ion-text>\n            <ion-text slot=\"end\">\n              {{ (i.price * (i.qty > 10? 10: i.qty)) | currency: '₱' }}\n            </ion-text>\n          </ion-item>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <ion-item lines=\"none\">\n      <ion-text slot=\"start\">Total</ion-text>\n      <ion-text slot=\"end\" color=\"primary\">{{ getTotalAmountInCart() | currency: '₱' }}</ion-text>\n    </ion-item>\n\n    <ion-button color=\"primary\" fill=\"solid\" size=\"large\" expand=\"block\">\n      Checkout\n    </ion-button>\n\n  </ion-toolbar>\n</ion-footer>");
 
 /***/ }),
 
@@ -101,7 +101,7 @@ CartPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("ion-content {\n  --background: linear-gradient(to bottom, #ffefba, #ffffff);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tYXJraHV6MTkyNS9Eb2N1bWVudHMvUHJvamVjdHMvb3RoZXJzL3Jlc3RhdXJhbnQtYXBwL3Jlc3RhdXJhbnQtYXBwL3NyYy9hcHAvcGFnZXMvY2FydC9jYXJ0LnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvY2FydC9jYXJ0LnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDBEQUFBO0FDQ0YiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9jYXJ0L2NhcnQucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNvbnRlbnQge1xuICAtLWJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byBib3R0b20sICNmZmVmYmEsICNmZmZmZmYpO1xuICAvLyAtLWJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byBib3R0b20sICMwYjQ4NmIsICNmNTYyMTcpOyBcbiAgLy8gLS1iYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gYm90dG9tLCAjMTQxZTMwLCAjMjQzYjU1KTtcbn0iLCJpb24tY29udGVudCB7XG4gIC0tYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KHRvIGJvdHRvbSwgI2ZmZWZiYSwgI2ZmZmZmZik7XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2NhcnQvY2FydC5wYWdlLnNjc3MifQ== */");
 
 /***/ }),
 
@@ -128,6 +128,34 @@ let CartPage = class CartPage {
     }
     ngOnInit() {
         this.items = this._userService.getCartItems();
+    }
+    removeItem(item) {
+        let index = this.items.indexOf(item);
+        this.items.splice(index, 1);
+    }
+    getTotalAmountInCart() {
+        return this._userService.getTotalAmount();
+    }
+    increaseQty(i) {
+        if (i.qty === undefined) {
+            i.qty = 1;
+        }
+        else {
+            i.qty++;
+        }
+    }
+    decreaseQty(i) {
+        if (i.qty === undefined) {
+            i.qty = 0;
+        }
+        else {
+            if (i.qty <= 1) {
+                this.removeItem(i);
+            }
+            else {
+                i.qty--;
+            }
+        }
     }
 };
 CartPage.ctorParameters = () => [

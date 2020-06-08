@@ -20,11 +20,15 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      // this.statusBar.styleDefault();
       this.splashScreen.hide();
       if (this.platform.is('android')) {
-        this.statusBar.overlaysWebView(true);
-        this.statusBar.styleBlackTranslucent();
+        this.statusBar.overlaysWebView(false);
+        // this.statusBar.styleLightContent();
+        this.statusBar.styleDefault();
+        this.statusBar.backgroundColorByHexString('#fff');
+      } else {
+        this.statusBar.styleDefault();
       }
     });
   }

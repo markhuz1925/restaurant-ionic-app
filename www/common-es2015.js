@@ -380,6 +380,15 @@ let UserService = class UserService {
     addItemsCart(item) {
         this._user.cart.push(item);
     }
+    getOrders() {
+        return this._user.orders;
+    }
+    getTotalAmount() {
+        return this._user.cart.reduce((a, b) => a + (b.qty * b.price), 0);
+    }
+    IsItemOnCart(cartItem) {
+        return this._user.cart.filter(item => item.menuid === cartItem.menuid).length > 0;
+    }
 };
 UserService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

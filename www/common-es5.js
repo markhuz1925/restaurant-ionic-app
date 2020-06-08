@@ -592,6 +592,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         value: function addItemsCart(item) {
           this._user.cart.push(item);
         }
+      }, {
+        key: "getOrders",
+        value: function getOrders() {
+          return this._user.orders;
+        }
+      }, {
+        key: "getTotalAmount",
+        value: function getTotalAmount() {
+          return this._user.cart.reduce(function (a, b) {
+            return a + b.qty * b.price;
+          }, 0);
+        }
+      }, {
+        key: "IsItemOnCart",
+        value: function IsItemOnCart(cartItem) {
+          return this._user.cart.filter(function (item) {
+            return item.menuid === cartItem.menuid;
+          }).length > 0;
+        }
       }]);
 
       return UserService;
